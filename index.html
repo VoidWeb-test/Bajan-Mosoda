@@ -439,9 +439,6 @@
       box-shadow: 0 16px 48px rgba(0,0,0,0.3);
     }
     .service-card:hover::after { transform: scaleX(1); }
-    .service-card:nth-child(4), .service-card:nth-child(5) {
-      /* last row: 2 cards — center them */
-    }
 
     .sc__icon {
       width: 54px; height: 54px;
@@ -456,14 +453,13 @@
     .sc__desc  { font-size: 0.87rem; line-height: 1.65; }
 
     .services__grid--5 {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .services__grid--5 .service-card {
+      grid-column: span 2;
     }
     .services__grid--5 .service-card:nth-child(4) {
-      grid-column: 1 / 2;
-      margin-left: calc(50% + 10px);
-    }
-    .services__grid--5 .service-card:nth-child(5) {
-      grid-column: 2 / 3;
+      grid-column-start: 2;
     }
 
     /* ─── MACHINES / TRUST ─────────────────────────── */
@@ -689,11 +685,9 @@
       .hero__visual      { display: none; }
       .pain__grid        { grid-template-columns: 1fr; }
       .services__grid    { grid-template-columns: repeat(2, 1fr); }
-      .services__grid--5 .service-card:nth-child(4),
-      .services__grid--5 .service-card:nth-child(5) {
-        grid-column: unset;
-        margin-left: 0;
-      }
+      .services__grid--5 { grid-template-columns: repeat(2, 1fr); }
+      .services__grid--5 .service-card { grid-column: unset; }
+      .services__grid--5 .service-card:nth-child(4) { grid-column-start: unset; }
       .machines__top     { grid-template-columns: 1fr; }
       .machines__gallery { grid-template-columns: 1fr 1fr; }
       .contact__grid     { grid-template-columns: 1fr; }
@@ -704,6 +698,7 @@
       .nav__cta .btn--outline { display: none; }
       .hamburger         { display: flex; }
       .services__grid    { grid-template-columns: 1fr; }
+      .services__grid--5 { grid-template-columns: 1fr; }
       .machines__gallery { grid-template-columns: 1fr; }
       .hero__stats       { flex-direction: column; gap: 20px; }
       .trust__inner      { flex-direction: column; gap: 28px; }
@@ -716,7 +711,6 @@
 </head>
 <body>
 
-  <!-- ═══ NAV ════════════════════════════════════════ -->
   <nav class="nav">
     <div class="container">
       <div class="nav__inner">
@@ -745,11 +739,9 @@
     </div>
   </nav>
 
-  <!-- ═══ HERO ═══════════════════════════════════════ -->
   <section class="hero">
     <div class="container">
       <div class="hero__grid">
-        <!-- LEFT: Text -->
         <div class="hero__content">
           <div class="hero__badge">Pankasz, Vas megye · Háztól házig</div>
           <h1 class="hero__title">
@@ -780,7 +772,6 @@
           </div>
         </div>
 
-        <!-- RIGHT: Image -->
         <div class="hero__visual">
           <div class="hero__img-wrap">
             <img src="image_1a8b3c.png" alt="Baján Mosoda – modern mosodai környezet"
@@ -802,7 +793,6 @@
     </div>
   </section>
 
-  <!-- ═══ TRUST BAR ═══════════════════════════════════ -->
   <div class="trust">
     <div class="container">
       <div class="trust__inner">
@@ -838,7 +828,6 @@
     </div>
   </div>
 
-  <!-- ═══ PAIN POINTS ══════════════════════════════════ -->
   <section class="section" id="problems">
     <div class="container">
       <div class="pain__intro">
@@ -875,7 +864,6 @@
     </div>
   </section>
 
-  <!-- ═══ SERVICES ═════════════════════════════════════ -->
   <section class="section section--alt" id="services">
     <div class="container">
       <div class="services__intro">
@@ -913,7 +901,6 @@
     </div>
   </section>
 
-  <!-- ═══ MACHINES / PRECISION ═════════════════════════ -->
   <section class="section" id="machines">
     <div class="container">
       <div class="machines__top">
@@ -941,7 +928,6 @@
           </ul>
         </div>
         <div class="machines__img">
-          <!-- Main gallery image or placeholder -->
           <div class="gallery-item" style="aspect-ratio:1; border-radius: var(--radius-lg);">
             <img src="image_1a3942.png" alt="Miele Professional ipari mosógép"
                  onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-img').style.display='flex';" />
@@ -954,7 +940,6 @@
         </div>
       </div>
 
-      <!-- 3-photo gallery row -->
       <div class="machines__gallery">
         <div class="gallery-item">
           <img src="image_1a3920.png" alt="Mosodai infrastruktúra"
@@ -963,186 +948,105 @@
             <div class="pi-icon">🚿</div>
             <p>Fotó: image_1a3920.png<br>Infrastruktúra</p>
           </div>
-          <div class="gallery-item__label">Modern infrastruktúra</div>
+          <div class="gallery-item__label">Professzionális infrastruktúra</div>
         </div>
         <div class="gallery-item">
-          <img src="image_1a8adb.png" alt="Szállítás és logisztika"
+          <img src="image_1a8adb.png" alt="Vasaló berendezések"
+               onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-img').style.display='flex';" />
+          <div class="placeholder-img" style="display:none;">
+            <div class="pi-icon">💨</div>
+            <p>Fotó: image_1a8adb.png<br>Vasalás / utómunka</p>
+          </div>
+          <div class="gallery-item__label">Ipari vasaló és mángorló gépek</div>
+        </div>
+        <div class="gallery-item">
+          <img src="image_dd831c.png" alt="Szállítás logisztika"
                onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-img').style.display='flex';" />
           <div class="placeholder-img" style="display:none;">
             <div class="pi-icon">🚐</div>
-            <p>Fotó: image_1a8adb.png<br>Szállítójármű</p>
+            <p>Fotó: image_dd831c.png<br>Logisztika / szállítás</p>
           </div>
-          <div class="gallery-item__label">Saját szállítójármű</div>
-        </div>
-        <div class="gallery-item" style="background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:24px; text-align:center;">
-          <div style="font-size:2.5rem">🏆</div>
-          <div style="font-family:'Montserrat',sans-serif; font-weight:700; color:var(--white); font-size:1.1rem;">Danube ipari gépek</div>
-          <div style="font-size:0.82rem; color:var(--steel);">Prémium szárítás és centrifugálás a legjobb eredményért</div>
+          <div class="gallery-item__label">Zárt szállítóflotta</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CONTACT ══════════════════════════════════════ -->
   <section class="section section--alt" id="contact">
     <div class="container">
       <div class="contact__grid">
-        <!-- Left: info -->
         <div class="contact__info">
-          <span class="eyebrow">Lépjen kapcsolatba</span>
-          <h2>Kérjen árajánlatot – gyorsan válaszolunk!</h2>
-          <p>Akár egyszeri mosásra, akár rendszeres céges partneri kapcsolatra gondol, írjon vagy hívjon minket. Átlátható árak, rugalmas feltételek.</p>
-
+          <span class="eyebrow">Kapcsolat</span>
+          <h2>Kérjen egyedi ajánlatot!</h2>
+          <p>Írjon nekünk üzenetet, vagy hívjon minket telefonon. Lakossági és céges megrendeléseket egyaránt fogadunk Vas megye egész területén.</p>
           <div class="contact__details">
             <div class="cd__row">
-              <div class="cd__icon">📍</div>
-              <div>Pankasz, 9937 · Vas megye</div>
+              <span class="cd__icon">📍</span>
+              <span>9944 Pankasz, Fő út</span>
             </div>
             <div class="cd__row">
-              <div class="cd__icon">📞</div>
-              <div><a href="tel:+36301234567">+36 30 123 4567</a></div>
+              <span class="cd__icon">📞</span>
+              <a href="tel:+36301234567">+36 30 123 4567</a>
             </div>
             <div class="cd__row">
-              <div class="cd__icon">📧</div>
-              <div><a href="mailto:info@bajanmosoda.hu">info@bajanmosoda.hu</a></div>
-            </div>
-            <div class="cd__row">
-              <div class="cd__icon">🕐</div>
-              <div>H–P: 8:00–17:00 · Szombat: 8:00–13:00</div>
+              <span class="cd__icon">✉️</span>
+              <a href="mailto:info@bajanmosoda.hu">info@bajanmosoda.hu</a>
             </div>
           </div>
-
-          <a class="maps-btn"
-             href="https://www.google.com/maps/place/Baján+Mosoda/@46.8371735,16.5034651,18.69z/data=!4m15!1m8!3m7!1s0x476f290cd874e36d:0xfbbbca367a46e718!2sPankasz,+9937!3b1!8m2!3d46.839247!4d16.4994581!16s%2Fm%2F02rjflp!3m5!1s0x476f29da4f04cf31:0x60d22ba3bd33736b!8m2!3d46.837413!4d16.504679!16s%2Fg%2F11l6wst1vt!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDYwNy4wIKXMDSoASAFQAw%3D%3D"
-             target="_blank" rel="noopener">
-            🗺️ Megnyitás Google Maps-en
-          </a>
+          <a href="https://maps.google.com" target="_blank" class="maps-btn">🗺️ Útvonaltervezés Google Térképen</a>
         </div>
-
-        <!-- Right: form -->
         <div class="contact__form">
-          <div class="cf__title">✉️ Ajánlatkérő űrlap</div>
-          <form action="#" method="post" onsubmit="handleFormSubmit(event)">
+          <h3 class="cf__title">Üzenetküldés</h3>
+          <form action="#" method="POST">
             <div class="form-group">
-              <label for="name">Teljes neve</label>
-              <input type="text" id="name" name="name" placeholder="Pl. Kovács János" required />
+              <label for="name">Név / Cégnév</label>
+              <input type="text" id="name" required placeholder="Az Ön neve" />
             </div>
             <div class="form-group">
-              <label for="phone">Telefonszám</label>
-              <input type="tel" id="phone" name="phone" placeholder="+36 30 ..." required />
+              <label for="email">E-mail cím</label>
+              <input type="email" id="email" required placeholder="minta@email.hu" />
             </div>
             <div class="form-group">
-              <label for="service">Milyen szolgáltatásra van szüksége?</label>
-              <select id="service" name="service">
-                <option value="">– Kérem válasszon –</option>
-                <option>Szőnyegtisztítás</option>
-                <option>Vegytisztítás</option>
-                <option>Munkaruha tisztítás (céges)</option>
-                <option>Speciális higiéniai mosás</option>
-                <option>Mosás és vasalás</option>
-                <option>Egyéb / Nem tudom még</option>
+              <label for="service">Választott szolgáltatás</label>
+              <select id="service">
+                <option value="general">Általános mosás és vasalás</option>
+                <option value="carpet">Szőnyegtisztítás</option>
+                <option value="dryclean">Vegytisztítás</option>
+                <option value="b2b">Céges munkaruha tisztítás</option>
+                <option value="hygiene">Speciális higiéniai mosás</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="message">Üzenet (opcionális)</label>
-              <textarea id="message" name="message" placeholder="Írjon pár sort igényéről, mennyiségről, esetleges határidőről…"></textarea>
+              <label for="message">Üzenet / Részletek</label>
+              <textarea id="message" required placeholder="Írja le röviden a tisztítandó ruhák mennyiségét..."></textarea>
             </div>
-            <button type="submit" class="btn btn--primary btn--lg form-submit">
-              Küldés →
-            </button>
+            <button type="submit" class="btn btn--primary form-submit">Üzenet elküldése</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ MAP ══════════════════════════════════════════ -->
-  <div class="map-section">
+  <section class="map-section">
     <div class="container">
       <div class="map-wrap">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1229.4!2d16.5034651!3d46.8371735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476f29da4f04cf31%3A0x60d22ba3bd33736b!2sBaján%20Mosoda!5e0!3m2!1shu!2shu!4v1718000000000!5m2!1shu!2shu"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Baján Mosoda helye a térképen">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2729.43123456789!2d16.53123456789!3d46.89123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476ee123456789%3A0x1234567890abcdef!2sPankasz!5e0!3m2!1shu!2shu!4v1620000000000!5m2!1shu!2shu" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ═══ FOOTER ════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
         <div class="footer__logo">
-          <div class="nav__logo-mark">BM</div>
-          <div>
-            <div class="nav__logo-text">Baján Mosoda</div>
-            <div class="nav__logo-sub">Professzionális mosodai szolgáltatások</div>
-          </div>
+          <div class="nav__logo-mark" style="width:32px; height:32px; font-size:0.9rem;">BM</div>
+          <span class="nav__logo-text" style="font-size:0.9rem;">Baján Mosoda</span>
         </div>
-        <div class="footer__tagline">Miele Professional · Danube · Háztól házig szállítás</div>
-        <div class="footer__copy">© 2024 Baján Mosoda · Pankasz, 9937</div>
+        <div class="footer__tagline">Prémium minőség, makulátlan tisztaság Pankaszon.</div>
+        <div class="footer__copy">&copy; 2026 Baján Mosoda. Minden jog fenntartva.</div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Form handler
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = '✅ Elküldve! Hamarosan keressük.';
-      btn.style.background = '#1d8a3a';
-      btn.disabled = true;
-    }
-
-    // Sticky nav refinement
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => {
-      nav.style.background = window.scrollY > 60
-        ? 'rgba(15,27,45,0.97)'
-        : 'rgba(15,27,45,0.85)';
-    });
-
-    // Hamburger (mobile)
-    document.querySelector('.hamburger').addEventListener('click', () => {
-      const links = document.querySelector('.nav__links');
-      if (links.style.display === 'flex') {
-        links.style.display = 'none';
-      } else {
-        Object.assign(links.style, {
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'absolute',
-          top: '70px',
-          left: '0',
-          right: '0',
-          background: 'rgba(15,27,45,0.98)',
-          padding: '20px 24px',
-          gap: '18px',
-          borderTop: '1px solid rgba(0,180,216,0.15)'
-        });
-      }
-    });
-
-    // Subtle scroll-reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.service-card, .pain__card, .gallery-item, .trust__item').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      obs.observe(el);
-    });
-  </script>
 </body>
 </html>
